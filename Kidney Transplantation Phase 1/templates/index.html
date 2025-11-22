@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>EpLogic</title>
+  <meta name="description" content="A tool to verify if a HLA eplet is antibody-reactive"/>
+
+  <link rel="stylesheet" href="{{url_for('static', filename='css/pure_min.css')}}"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/pure_responsive_min.css')}}"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/custom.css')}}"/>
+</head>
+
+<body>
+  <div class="header">
+    <h1><a href="/">EpLogic</a></h1>
+
+    <p>Verify if a HLA eplet is antibody-reactive.</p>
+  </div>
+
+  <div class="instructions">
+    <span class="strong">Instructions:</span>
+    <br/>
+
+    <ul>
+      <li>Fill the eplet's panel data (<a href="#" id="set-example">see example</a>).</li>
+      <li>Check if all fields are filled.</li>
+      <li>Click "Continue".</li>
+    </ul>
+  </div>
+
+  <div class="content pure-g">
+    <div class="pure-u-1 pure-u-lg-2-3 pure-u-xl-1-2">
+      <form id="form" action="/predict" method="get" class="pure-form pure-form-stacked">
+        <fieldset>
+          <div class="pure-g">
+            <div class="pure-u-1-2">
+              <label for="eplet_locus">HLA locus group</label>
+
+              <select id="eplet_locus" name="eplet_locus" class="pure-u-22-24">
+                <option value="">Selecione...</option>
+                <option value="abc">ABC</option>
+                <option value="drb">DRB</option>
+                <option value="dq">DQ</option>
+                <option value="dp">DP</option>
+              </select>
+            </div>
+
+            <div class="pure-u-1-2">
+              <label for="eplet_allele_qtd">Allele quantity</label>
+              <input type="number" min="0" step="1" id="eplet_allele_qtd" name="eplet_allele_qtd" class="pure-u-1"/>
+            </div>
+          </div>
+
+          <br/>
+
+          <div class="pure-g">
+            <div class="pure-u-1-2">
+              <label for="eplet_min_mfi">Eplet's  min. MFI</label>
+              <input type="number" min="0" step="1" id="eplet_min_mfi" name="eplet_min_mfi" class="pure-u-22-24"/>
+            </div>
+
+            <div class="pure-u-1-2">
+              <label for="eplet_max_mfi">Eplet's max. MFI</label>
+              <input type="number" min="0" step="1" id="eplet_max_mfi" name="eplet_max_mfi" class="pure-u-1"/>
+            </div>
+          </div>
+
+          <br/>
+
+          <div class="pure-g">
+            <div class="pure-u-1-2">
+              <label for="panel_nc">Panel's Neg. Ctrl.</label>
+              <input type="number" min="0" step="1" id="panel_nc" name="panel_nc" class="pure-u-22-24"/>
+            </div>
+
+            <div class="pure-u-1-2">
+              <label for="panel_pc">Panel's Pos. Ctrl.</label>
+              <input type="number" min="0" step="1" id="panel_pc" name="panel_pc" class="pure-u-1"/>
+            </div>
+          </div>
+
+          <br/>
+
+          <button type="submit" id="continue" class="pure-button pure-button-primary strong">Continue</button>
+        </fieldset>
+      </form>
+
+      <div id="result" class="result" style="display: none;">
+        <p class="result__label">
+          The eplet <span id="result__label">?</span> antibody-reactive!
+        </p>
+
+        <p class="result__scores">
+          &#10132; Probability of not beeing antibody-reactive: <span id="result__score0">?</span>
+          <br/>
+          &#10132; Probability of beeing antibody-reactive: <span id="result__score1">?</span>
+        </p>
+
+        <p>
+          Note: antibody-reactive HLA eplets are the ones against the recipient may present important anti-HLA antibodies.
+          If the donor shares one of these eplets, the risk of the recipient developing antibody-mediated rejection against the graft will be greater.
+          Remember that all results presented here are based on probabilities. <span class="strong">This tool is for research use only!</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="api_access">
+    <span class="strong">API access:</span>
+
+    <br/>
+
+    <ul>
+
+      <li>
+        Input:
+        <ul>
+          <li>Params: "eplet_locus", "eplet_allele_qtd", "eplet_min_mfi", "eplet_max_mfi", "panel_nc" and "panel_pc".</li>
+          <li>"eplet_locus" can be "abc", "drb", "dq" or "dp".</li>
+          <li>Complete URL example: <a href="https://eplogic.libufpi.com.br/predict?eplet_locus=ABC&eplet_allele_qtd=17&eplet_min_mfi=509&eplet_max_mfi=12000&panel_nc=102&panel_pc=13200">click here</a>.</li>
+        </ul>
+      </li>
+
+      <li>
+        Output:
+        <ul>
+          <li>JSON with "label", "score0" and "score1" attributes.</li>
+          <li>"label" is the result (the value "1" is for antibody-reactive).</li>
+          <li>"score0" and "score1" are the prob. of the result beeing 0 or 1.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer">
+   <p>Done by:</p>
+   <ul>
+    <li>Dhenu D S</li>
+    <li>Mega Shree M</li>
+    <li>Gavash D</li>
+    <li>Aravindhan S P</li>
+
+  </div>
+
+  <script type="text/javascript" defer="defer" src="{{url_for('static', filename='js/jquery_min.js')}}"></script>
+  <script type="text/javascript" defer="defer" src="{{url_for('static', filename='js/custom.js')}}"></script>
+</body>
+</html>
