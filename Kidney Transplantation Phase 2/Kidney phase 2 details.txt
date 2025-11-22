@@ -1,0 +1,349 @@
+
+Let's say a person wants to donate his/her kidney to a loved one but cannot do so because they have some medical incompatibility. This problem can be solved by curating similar patients and swapping the kidney within themselves. This problem is called the living donor kidney exchange problem. Only one donated kidney is needed to replace the two failed kidneys, which makes living-donor kidney transplant an alternative to deceased-donor kidney transplant.In India, this is often done manually and there's a need to automate the process.
+
+Aim:
+
+his project aims to automate a part of this process. This project's primary focus is to provide a platform to facilitate automized inter-hospital kidney transplants.
+
+Features:
+
+This platform allows interested hospitals to register. The doctors from the registered hospitals can create their accounts and add their patients' (having kidney problems) medical details to this platform.
+
+After a doctor completes this process, this platform provides two main features.
+1) The first feature is an option to view only the essential details of a patient required for a kidney transplant.
+2) Secondly, for a given patient, all suitable matches from all the registered hospitals are displayed. These suitable matches are ranked from best to worst.
+
+Users and their roles:
+
+Admin:
+1)Can able to register the patient and hospital
+Managing the website
+-->For Patient
+
+-->For Hospital-The required details are
+Name,Adddress,Type of the Hospital,Licence Information,Nephrologist Name and Id,Surgeon Name and Id
+
+2)Can be able to see the pariwise match by using the pair id where it will show the pair score 
+with the HLA types of it
+
+3)can be able to see the global match by selection of maximum cycle size and Optimality criteria like maximise total no of transplant and maximise total no of weight
+
+4)Able to see the Data overview of
+Pair id,Patient Id,Donor id,Hos id,status(active,inactive),and can edit and delete it.
+
+5)Can able to see the whole summary of the patients and donors with,
+id,name,age,bmi,blood group,hla antigens,Clearance(Yes,No)
+
+6)See the match detials of the particular donor and patient detials by pair id
+
+7)Can able to download the database dump,Compatibility Graph,Data upload (Yet to be implemented...) as JSON file
+
+8)Can be able to see the hospitals in the tabular view Hospital ID,Hospital Name,Type(Govt,Pvt(Gov Insured),Pvt)
+
+Transplant coordinator:
+A doctor from a registered hospital who performs a kidney transplant.
+
+1)Can able to register the patient details
+profile,name,sex,dob,height,weight,BMI,blood group,blood report (upload in file),address,number,email,HLA antigens,HLA report(upload in file),Unacceptable antigens,DSA report(upload in file),basic diseases,Genetics/renal biopsy (if any),Comorbid conditions,HIV,Hepatitis B,Hepatitis C,Previous Transplant,Mode of Dialysis,Choose Registered in Deceased Donor Program,
+Primary Nephrologist,Dialysis center or Hospital,Provisional clearance by primary nephrologist,Choose Any pre transplant procedures/surgery planned.
+
+2)Can be able to see the pariwise match by using the pair id where it will show the pair score 
+with the HLA types of it
+
+3)can be able to see the global match by selection of maximum cycle size and Optimality criteria like maximise total no of transplant and maximise total no of weight
+
+4)Able to see the Data overview of
+Pair id,Patient Id,Donor id,Hos id,status(active,inactive),and can edit and delete it.
+
+5)Can able to see the whole summary of the patients and donors with,
+id,name,age,bmi,blood group,hla antigens,Clearance(Yes,No)
+
+6)See the match detials of the particular donor and patient detials by pair id
+
+
+
+The Prediction is done by using the python code where
+This Python code implements a set of functions to solve different variations of the Kidney Exchange Problem (KEP) using linear programming (LP) or integer linear programming (ILP). The goal of KEP is to find the optimal set of kidney exchange cycles to maximize certain criteria, such as the number of transplants, the total weight of the exchanges, or the number of pairwise exchanges.
+
+Linear Programming (LP): A mathematical method for optimizing a linear objective function subject to linear constraints.
+Integer Linear Programming (ILP): A variation of LP where some or all variables are restricted to integer values.
+Kidney Exchange Problem (KEP): A problem of finding the optimal set of kidney exchange cycles to maximize certain criteria.
+Cycles: Sequences of patient pairs where each patient donates a kidney to the next patient in the sequence, and the last patient donates to the first.
+Vertices: Patients in the exchange graph.
+Edges: Compatibility relationships between patient pairs.
+pulp: A Python library for linear programming.
+In essence, this code provides a flexible framework for solving various KEP optimization problems by formulating them as LP/ILP problems and using the pulp library to find optimal solutions.
+
+
+
+Languages Used:
+PHP
+69.3%
+ 
+Python
+14.3%
+ 
+JavaScript
+10.3%
+ 
+CSS
+5.0%
+ 
+Hack
+1.1%
+
+
+Database:
+MySQL
+
+DB name:Kidney-exchange
+
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Jan 06, 2021 at 07:36 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `kidney_exchange`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donors`
+--
+
+CREATE TABLE `donors` (
+  `id` varchar(50) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `sex` varchar(10) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `height` decimal(6,2) DEFAULT NULL,
+  `weight` decimal(6,2) DEFAULT NULL,
+  `blood_group` varchar(10) DEFAULT NULL,
+  `relation` varchar(50) DEFAULT NULL,
+  `address` varchar(300) DEFAULT NULL,
+  `contact_number` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `hla_antigens` varchar(300) DEFAULT NULL,
+  `comorb` varchar(300) DEFAULT NULL,
+  `hiv` varchar(20) DEFAULT NULL,
+  `hep_b` varchar(20) DEFAULT NULL,
+  `hep_c` varchar(20) DEFAULT NULL,
+  `alcohol` varchar(20) DEFAULT NULL,
+  `smoking` varchar(20) DEFAULT NULL,
+  `prov_clearance` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donor_files`
+--
+
+CREATE TABLE `donor_files` (
+  `id` varchar(50) NOT NULL,
+  `profile_pic` mediumblob DEFAULT NULL,
+  `blood_report` mediumblob DEFAULT NULL,
+  `hla_report` mediumblob DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hospitals`
+--
+
+CREATE TABLE `hospitals` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  `address` varchar(300) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `license` varchar(50) DEFAULT NULL,
+  `nephro_name` varchar(50) DEFAULT NULL,
+  `nephro_id` varchar(50) DEFAULT NULL,
+  `surg_name` varchar(50) DEFAULT NULL,
+  `surg_id` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patients`
+--
+
+CREATE TABLE `patients` (
+  `id` varchar(50) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `sex` varchar(10) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `height` decimal(6,2) DEFAULT NULL,
+  `weight` decimal(6,2) DEFAULT NULL,
+  `blood_group` varchar(10) DEFAULT NULL,
+  `address` varchar(300) DEFAULT NULL,
+  `contact_number` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `hla_antigens` varchar(300) DEFAULT NULL,
+  `ua_antigens` varchar(300) DEFAULT NULL,
+  `basic_disease` varchar(300) DEFAULT NULL,
+  `gr_biopsy` varchar(300) DEFAULT NULL,
+  `comorb` varchar(300) DEFAULT NULL,
+  `hiv` varchar(20) DEFAULT NULL,
+  `hep_b` varchar(20) DEFAULT NULL,
+  `hep_c` varchar(20) DEFAULT NULL,
+  `prev_transp` varchar(50) DEFAULT NULL,
+  `dialysis` varchar(150) DEFAULT NULL,
+  `dd_program` varchar(150) DEFAULT NULL,
+  `prime_nephro` varchar(50) DEFAULT NULL,
+  `hospital` varchar(150) DEFAULT NULL,
+  `prov_clearance` varchar(20) DEFAULT NULL,
+  `pre_transp_surgery` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient_files`
+--
+
+CREATE TABLE `patient_files` (
+  `id` varchar(50) NOT NULL,
+  `profile_pic` mediumblob DEFAULT NULL,
+  `blood_report` mediumblob DEFAULT NULL,
+  `hla_report` mediumblob DEFAULT NULL,
+  `dsa_report` mediumblob DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pd_pairs`
+--
+
+CREATE TABLE `pd_pairs` (
+  `pair_id` varchar(50) NOT NULL,
+  `patient_id` varchar(50) DEFAULT NULL,
+  `donor_id` varchar(50) DEFAULT NULL,
+  `hosp_id` int(11) NOT NULL,
+  `status` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `hosp_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `type`, `hosp_id`) VALUES
+(1, 'test1', '$2y$10$YnJm6me6OJT1/Cd0.e0mCO6doPc.jixiPWF3pusdAhO3Nw.rMOg92', 'test1@gmail.com', 'Transplant coordinator', 10000),
+(2, 'test2', '$2y$10$pwdT4iN/0ocwuW4rHrYiXu8SlOzBK1SfK5fmhlFM7FtiLc6e9S492', 'test2@gmail.com', 'Transplant coordinator', 10003),
+(3, 'test3', '$2y$10$FscsPfBgQ1hEeKr3U/s9huBSKxSQFwuztHTpFtf2XdoZGZSFKO2wm', 'test3@gmail.com', 'Transplant coordinator', 10005),
+(4, 'admin1', '$2y$10$3VkON0/0vCdO0AVh4LXRFuUKDLwCkXdPosTcKP7exY/o3qes3hZ1m', 'admin1@gmail.com', 'Admin', 0),
+(5, 'test10', '$2y$10$hneLnj2vdUHLS2LTf7qxNOhvfriPeChJlkRiP30x28smOPc.390fK', 'test10@gmail.com', 'Transplant coordinator', 10004);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `donors`
+--
+ALTER TABLE `donors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `donor_files`
+--
+ALTER TABLE `donor_files`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hospitals`
+--
+ALTER TABLE `hospitals`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `patients`
+--
+ALTER TABLE `patients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `patient_files`
+--
+ALTER TABLE `patient_files`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pd_pairs`
+--
+ALTER TABLE `pd_pairs`
+  ADD PRIMARY KEY (`pair_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `hospitals`
+--
+ALTER TABLE `hospitals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10011;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
