@@ -1,0 +1,87 @@
+KIDNEY TRANSPLANTATION
+---------------------------------------------------------------
+
+As this project is done based on the ml algorithms. First process is that Classification of datatype
+
+Classification of datatype:
+
+The datatype can be classified by three methods
+ ->Supervised learning
+ ->Unsupervised learning
+ ->Semi supervised learning
+
+In Supervised learning the labeled dataset is used while the training the process. It is further divided into the regression and classification types based on the output is a continuous numerical value or a discrete value. Supervised learning models include: linear and logistic regression, decision trees, random forests, supporting vector machine and neural networks.
+
+In Unsupervised learning here unlabeled dataset is used to find the patterns or grouping the dataset with the same characteristics. Here 3 types is used they are dimensional reduction(used to simplify data for extracting information easily), association(find relation between input variables), clustering(find groups with shared characteristics).
+
+Then these two learning methods are combined that is called semi-supervised learning. Here both labeled and unlabeled dataset is used.  This is  advantageous than a simple supervised machine learning model as it allows working with larger amounts of data that would otherwise beunusable because of the lack of labeling, resulting in higher accuracy.
+
+--------------------------------------------------------------------------------------------
+
+STEPS HOW THE DATA IS PROCESSED
+
+1. Data Preprocessing
+Format and clean the data before training. Handles the missing values using techniques like imputation or removal.
+-> Imputing
+ Replace missing values instead of deleting the data.
+ Uses SimpleImputer() in scikit-learn for filling missing values with mean, median, or mode.
+-> Encoding Categorical Features
+Convert categorical variables to numerical ones.
+One-hot encoding is a common method, creating binary columns for each category.
+Minimize dimensions by using one-hot encoding can also be done by creating only n−1 new columns
+2. Splitting Data into Training, Validation, and Test Sets
+ Allocate data: 70% for training, 15% each for validation and testing.
+ Use the validation set to tune hyperparameters and test set for final evaluation.
+ Prevent overfitting 
+3. Evaluating Performance
+  Avoid overfitting by reducing model complexity or regularization.
+  Use performance metrics like generalization error to assess model accuracy.
+4. Feature Selection
+ Choose features with high importance to prevent overfitting.
+ Improve model accuracy and interpretability by using relevant features.
+  Techniques like Mean Decrease in Impurity (MDI) help evaluate feature significance.
+5. Hyperparameter Tuning
+  Optimize model parameters manually through experimentation.
+  Use grid search for systematic evaluation of parameter combinations.
+  Balance model complexity and performance by adjusting hyperparameters.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+WHAT IS CHRONIC DISORDER?
+
+Chronic kidney disease (CKD) is a long-term condition where the kidneys gradually lose their ability to filter waste and excess fluids from the blood. This can lead to the build-up of harmful substances in the body. CKD is a major health issue globally and is the leading cause of kidney transplants, as around 90% of transplants are done to treat end-stage renal disease, the final stage of CKD. The condition is becoming more common, with an estimated 8-16% of the global population affected.In India almost 17.2% of people got affected in the ckd. Alarmingly, the number of deaths related to CKD has nearly tripled, from 409,000 in 1990 to around 1.2 million in 2015.The early symptoms of CKD can include feeling tired, nauseous, loss of appetite, swelling in the legs, and itching. As the disease progresses, it can lead to serious complications like anemia, heart disease, bone problems, and nerve damage. In its final stages, when the kidneys can no longer function, patients need to undergo dialysis regularly. Dialysis is a treatment that artificially performs the kidney’s function, but it has to be done several times a week, with each session lasting 3 to 5 hours. This can greatly reduce a person's quality of life. For this reason, when a suitable donor is available, kidney transplantation is often the preferred treatment option. It can significantly improve the quality of life and long-term health outcomes for people with advanced CKD.
+
+
+HLA TESTING
+
+HLA typing is a crucial process in kidney transplantation. It involves testing the human leukocyte antigens (HLA) present in a person's blood and tissues. HLAs are proteins found on the surface of cells that play a vital role in the immune system's ability to distinguish between the body's own cells and foreign cells. This process helps determine the compatibility between a potential donor and recipient, as the closer the HLA match, the lower the risk of the recipient's immune system rejecting the transplanted kidney.Once a  donor and  pair are identified, their blood is tested for compatibility through a procedure called cross-matching. In cross-matching, the recipient's blood serum is mixed with the donor's white blood cells to check for any antibodies that might attack the donor cells. If the recipient's antibodies bind to the donor cells and cause them to burst, this indicates a positive cross-match. This suggests that the recipient's immune system may react against the donor kidney, increasing the risk of rejection.
+If the cross match is positive then there will be no tranplanatation. If the cross match is negative  then transplantation can be done successfully.
+There are three types of HLA 
+ ->HLA-A
+ ->HLA-B
+ ->HLA-C
+
+
+HLA MISMATCH
+
+The decision about which donor-recipient pairings to keep or discard in organ transplants is based on calculating an HLA mismatch. HLA antigens are categorized into two main types: class I and class II. Class I antigens are found on most body cells, while class II antigens are specific to certain immune cells. Each type is divided into specific locations on chromosomes, called loci, such as HLA-A, HLA-B, HLA-C for class I, and HLA-DR, HLA-DQ, HLA-DP for class II. Each locus has two variations, known as alleles, inherited from each parent.When calculating the HLA mismatch, a score is assigned based on how many alleles differ between the donor and recipient for each locus (like HLA-A, HLA-B, and HLA-DR). A higher score indicates a greater chance of incompatibility. For example, if both alleles at the HLA-B and HLA-DR loci differ between the donor and recipient, that contributes to the mismatch score. If they have one identical allele at HLA-A, that contributes less to the score. The total HLA mismatch score is the sum of differences across these loci. For instance, if the mismatch at HLA-A is 1 and at HLA-B and HLA-DR is 2 each, the overall mismatch score would be 5.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+DATA PREPROCESSING
+
+Data is extracted from six different tables in the UNOS dataset using MongoDB, but only three are relevant: Kidney_Pancreas, Living_Donor, and Deceased_Donor.
+
+Kidney_Pancreas Table: This table has data on kidney and pancreas transplants performed in the US from 1994 to 2022. It includes information about both recipients and donors and is the largest table with over 1.1 million entries and 470 features. Due to its size, converting the data to JSON resulted in a file size of around 40GB, making it slow to process in Python. Converting the data to CSV format improved the loading speed significantly because CSV files store data in a simpler tabular format compared to the more complex hierarchical structure of JSON.
+
+Living_Donor and Deceased_Donor Tables: These tables provide detailed information about living and deceased donors, respectively. The Kidney_Pancreas table contains limited donor details, especially for living donors. To enrich the dataset, a join operation was performed using the DONOR_ID, which is a foreign key in the Kidney_Pancreas table linking it to the Living_Donor or Deceased_Donor tables. This joining process added more donor information: 174,381 entries matched with Living_Donor and 399,822 entries matched with Deceased_Donor.
+
+Splitting the Dataset: Initial analysis using Random Survival Forest (RSF) models showed that factors affecting graft survival vary between living and deceased donor transplants. For example, the cause of death of a deceased donor has a significant impact on graft survival time. To focus on living donor transplants, the data was split into two subsets based on the donor type. The subset for living donor transplants, now called "Kidpan_Living," consists of 174,381 entries and 649 features.
+
+Reducing Features: Having too many features (649) can lead to overfitting and make the machine learning model hard to interpret. Therefore, the number of features was significantly reduced to create a more effective and interpretable model.
+
+For missing values, they were filled using scikit-learn's SimpleImputer(). Numerical features were imputed with the mean value, and categorical features with the most frequent value.
+
+
+
+
