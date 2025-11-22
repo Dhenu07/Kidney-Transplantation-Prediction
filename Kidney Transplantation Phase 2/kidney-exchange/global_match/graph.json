@@ -1,0 +1,336 @@
+{
+    "data": {
+        "10011-5bHmK": {
+            "sources": [
+                "10011-5bHmK"
+            ],
+            "dAge": 45,
+            "matches": [
+                {
+                    "recipient": "10011-LPiEt",
+                    "score": 6
+                },
+                {
+                    "recipient": "10012-eMrcE",
+                    "score": 3
+                },
+                {
+                    "recipient": "10012-Uiv2W",
+                    "score": 7
+                }
+            ]
+        },
+        "10011-6lDSJ": {
+            "sources": [
+                "10011-6lDSJ"
+            ],
+            "dAge": 29,
+            "matches": [
+                {
+                    "recipient": "10011-5bHmK",
+                    "score": 6
+                },
+                {
+                    "recipient": "10011-LeF1k",
+                    "score": 16
+                },
+                {
+                    "recipient": "10012-eMrcE",
+                    "score": 5
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 5
+                },
+                {
+                    "recipient": "10012-Uiv2W",
+                    "score": 5
+                },
+                {
+                    "recipient": "10013-b7uC4",
+                    "score": 2
+                },
+                {
+                    "recipient": "10013-CLM0T",
+                    "score": 2
+                }
+            ]
+        },
+        "10011-LeF1k": {
+            "sources": [
+                "10011-LeF1k"
+            ],
+            "dAge": 29,
+            "matches": [
+                {
+                    "recipient": "10011-5bHmK",
+                    "score": 6
+                },
+                {
+                    "recipient": "10011-LPiEt",
+                    "score": 5
+                },
+                {
+                    "recipient": "10012-dR6Ia",
+                    "score": 2
+                },
+                {
+                    "recipient": "10012-eMrcE",
+                    "score": 5
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 6
+                },
+                {
+                    "recipient": "10012-Uiv2W",
+                    "score": 6
+                },
+                {
+                    "recipient": "10014-KQj6U",
+                    "score": 5
+                }
+            ]
+        },
+        "10011-LPiEt": {
+            "sources": [
+                "10011-LPiEt"
+            ],
+            "dAge": 45,
+            "matches": [
+                {
+                    "recipient": "10011-5bHmK",
+                    "score": 3
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 7
+                },
+                {
+                    "recipient": "10013-K9d4b",
+                    "score": 6
+                },
+                {
+                    "recipient": "10013-Nj9OA",
+                    "score": 6
+                }
+            ]
+        },
+        "10012-dR6Ia": {
+            "sources": [
+                "10012-dR6Ia"
+            ],
+            "dAge": 54,
+            "matches": [
+                {
+                    "recipient": "10011-LPiEt",
+                    "score": 3
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 3
+                },
+                {
+                    "recipient": "10014-KQj6U",
+                    "score": 3
+                }
+            ]
+        },
+        "10012-eMrcE": {
+            "sources": [
+                "10012-eMrcE"
+            ],
+            "dAge": 25,
+            "matches": [
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 10
+                }
+            ]
+        },
+        "10012-rtQF3": {
+            "sources": [
+                "10012-rtQF3"
+            ],
+            "dAge": 45,
+            "matches": [
+                {
+                    "recipient": "10012-dR6Ia",
+                    "score": 6
+                },
+                {
+                    "recipient": "10012-eMrcE",
+                    "score": 3
+                },
+                {
+                    "recipient": "10012-Uiv2W",
+                    "score": 7
+                },
+                {
+                    "recipient": "10014-KQj6U",
+                    "score": 3
+                }
+            ]
+        },
+        "10012-Uiv2W": {
+            "sources": [
+                "10012-Uiv2W"
+            ],
+            "dAge": 45,
+            "matches": [
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 7
+                }
+            ]
+        },
+        "10013-6cGJg": {
+            "sources": [
+                "10013-6cGJg"
+            ],
+            "dAge": 58,
+            "matches": [
+                {
+                    "recipient": "10011-5bHmK",
+                    "score": 3
+                },
+                {
+                    "recipient": "10012-dR6Ia",
+                    "score": 3
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 3
+                },
+                {
+                    "recipient": "10013-CLM0T",
+                    "score": 0
+                },
+                {
+                    "recipient": "10013-Nj9OA",
+                    "score": 0
+                }
+            ]
+        },
+        "10013-b7uC4": {
+            "sources": [
+                "10013-b7uC4"
+            ],
+            "dAge": 79,
+            "matches": [
+                {
+                    "recipient": "10011-5bHmK",
+                    "score": 0
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 0
+                },
+                {
+                    "recipient": "10013-K9d4b",
+                    "score": 0
+                },
+                {
+                    "recipient": "10013-Nj9OA",
+                    "score": 0
+                }
+            ]
+        },
+        "10013-CLM0T": {
+            "sources": [
+                "10013-CLM0T"
+            ],
+            "dAge": 79,
+            "matches": [
+                {
+                    "recipient": "10011-6lDSJ",
+                    "score": 0
+                }
+            ]
+        },
+        "10013-K9d4b": {
+            "sources": [
+                "10013-K9d4b"
+            ],
+            "dAge": 34,
+            "matches": [
+                {
+                    "recipient": "10011-5bHmK",
+                    "score": 5
+                },
+                {
+                    "recipient": "10011-LPiEt",
+                    "score": 8
+                },
+                {
+                    "recipient": "10012-eMrcE",
+                    "score": 5
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 8
+                },
+                {
+                    "recipient": "10012-Uiv2W",
+                    "score": 8
+                },
+                {
+                    "recipient": "10013-6cGJg",
+                    "score": 2
+                },
+                {
+                    "recipient": "10013-b7uC4",
+                    "score": 2
+                },
+                {
+                    "recipient": "10013-CLM0T",
+                    "score": 2
+                },
+                {
+                    "recipient": "10013-Nj9OA",
+                    "score": 16
+                }
+            ]
+        },
+        "10013-Nj9OA": {
+            "sources": [
+                "10013-Nj9OA"
+            ],
+            "dAge": 32,
+            "matches": [
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 8
+                },
+                {
+                    "recipient": "10013-6cGJg",
+                    "score": 2
+                },
+                {
+                    "recipient": "10013-K9d4b",
+                    "score": 16
+                }
+            ]
+        },
+        "10014-KQj6U": {
+            "sources": [
+                "10014-KQj6U"
+            ],
+            "dAge": 49,
+            "matches": [
+                {
+                    "recipient": "10011-6lDSJ",
+                    "score": 7
+                },
+                {
+                    "recipient": "10011-LeF1k",
+                    "score": 3
+                },
+                {
+                    "recipient": "10012-rtQF3",
+                    "score": 6
+                }
+            ]
+        }
+    }
+}
